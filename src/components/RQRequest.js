@@ -7,7 +7,22 @@ const fetchSuperHeroes = () => {
 }
 
 const RQRequest = () => {
-  const { isLoading, data, error, isError, isFetching, refetch } = useQuery('super-heroes', fetchSuperHeroes, { enabled: false })
+  const onSuccess = (data) => {
+    console.log('Callback success after successfully fetching', data)
+  }
+
+  const onError = (error) => {
+    console.log('Callback error after successfully fetching', error)
+  }
+
+  const { isLoading, data, error, isError, isFetching, refetch } = useQuery(
+    'super-heroes',
+    fetchSuperHeroes,
+    {
+      enabled: false,
+      onSuccess,
+      onError
+    })
 
   if (isLoading || isFetching ) return <h2>Loading...</h2>
 
