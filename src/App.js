@@ -6,6 +6,7 @@ import TraditionalRequest from "./components/TraditionalRequest";
 import RQRequest from "./components/RQRequest";
 import HomePage from "./components/HomePage";
 import Header from './components/Header'
+import SuperHeroDetail from "./components/SuperHeroDetail";
 
 const queryClient = new QueryClient();
 
@@ -18,6 +19,7 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="traditional" element={<TraditionalRequest />} />
           <Route path="rq" element={<RQRequest />} />
+          <Route path="rq/:heroId" element={<SuperHeroDetail />} />
         </Routes>
       </div>
       <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'} />

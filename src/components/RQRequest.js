@@ -1,5 +1,6 @@
 import React from 'react';
 import {useSuperHeroData} from "../hooks/useSuperHeroData";
+import {Link} from "react-router-dom";
 
 const RQRequest = () => {
   const onSuccess = (data) => {
@@ -20,16 +21,18 @@ const RQRequest = () => {
     <div>
       <h2>React Query Request</h2>
       <button onClick={refetch}>Fetch heroes</button>
-      {/*{
-        data?.data.map((hero) => {
-          return <div key={hero.name}>{hero.name}</div>
-        })
-      }*/}
       {
+        data?.data.map((hero) => {
+          return <div key={hero.name}>
+            <Link to={`/rq/${hero.id}`}>{hero.name}</Link>
+          </div>
+        })
+      }
+      {/*{
         data?.map((heroName) => {
           return <div key={heroName}>{heroName}</div>
         })
-      }
+      }*/}
     </div>
   )
 }
