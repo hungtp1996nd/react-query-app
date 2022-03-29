@@ -11,6 +11,7 @@ const Header = () => {
         <Link to="/rq">React Query Request</Link>
         <Link to="/rq-parallel">React Query Parallel</Link>
         <Link to="/rq-multi-dynamic">React Query Multi and Dynamic</Link>
+        <Link to="/rq-dependent">React Query Dependent</Link>
       </nav>
     </div>
   )
