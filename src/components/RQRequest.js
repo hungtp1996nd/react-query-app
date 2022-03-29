@@ -21,7 +21,11 @@ const RQRequest = () => {
     {
       enabled: false,
       onSuccess,
-      onError
+      onError,
+      select: (data) => {
+        const superHeroesName = data.data.map(hero => hero.name)
+        return superHeroesName;
+      }
     })
 
   if (isLoading || isFetching ) return <h2>Loading...</h2>
@@ -32,9 +36,14 @@ const RQRequest = () => {
     <div>
       <h2>React Query Request</h2>
       <button onClick={refetch}>Fetch heroes</button>
-      {
+      {/*{
         data?.data.map((hero) => {
           return <div key={hero.name}>{hero.name}</div>
+        })
+      }*/}
+      {
+        data?.map((heroName) => {
+          return <div key={heroName}>{heroName}</div>
         })
       }
     </div>
