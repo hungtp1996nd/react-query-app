@@ -7,6 +7,7 @@ import RQRequest from "./components/RQRequest";
 import HomePage from "./components/HomePage";
 import Header from './components/Header'
 import SuperHeroDetail from "./components/SuperHeroDetail";
+import RQParallel from "./components/RQParallel";
 
 const queryClient = new QueryClient();
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="traditional" element={<TraditionalRequest />} />
           <Route path="rq" element={<RQRequest />} />
           <Route path="rq/:heroId" element={<SuperHeroDetail />} />
+          <Route path="rq-parallel" element={<RQParallel />} />
         </Routes>
       </div>
       <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'} />

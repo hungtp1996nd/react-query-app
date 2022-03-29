@@ -9,6 +9,7 @@ const Header = () => {
         <Link to="/">Home Page</Link>
         <Link to="/traditional">Traditional Request</Link>
         <Link to="/rq">React Query Request</Link>
+        <Link to="/rq-parallel">React Query Parallel</Link>
       </nav>
     </div>
   )
