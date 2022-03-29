@@ -8,6 +8,7 @@ import HomePage from "./components/HomePage";
 import Header from './components/Header'
 import SuperHeroDetail from "./components/SuperHeroDetail";
 import RQParallel from "./components/RQParallel";
+import DynamicAndMultiQuery from "./components/DynamicAndMultiQuery";
 
 const queryClient = new QueryClient();
 
@@ -22,6 +23,7 @@ function App() {
           <Route path="rq" element={<RQRequest />} />
           <Route path="rq/:heroId" element={<SuperHeroDetail />} />
           <Route path="rq-parallel" element={<RQParallel />} />
+          <Route path="rq-multi-dynamic" element={<DynamicAndMultiQuery heroIds={[1, 3]} />} />
         </Routes>
       </div>
       <ReactQueryDevtools initialIsOpen={false} position={'bottom-right'} />
