@@ -1,14 +1,24 @@
-import React from 'react';
-import {useSuperHeroData} from "../hooks/useSuperHeroData";
-import {Link} from "react-router-dom";
+import React, { useState } from 'react';
+import { useSuperHeroData, useAddingSuperHero } from "../hooks/useSuperHeroData";
+import { Link } from "react-router-dom";
 
 const RQRequest = () => {
+  const [name, setName] = useState('')
+  const [alterEgo, setAlterEgo] = useState('')
+
   const onSuccess = (data) => {
     console.log('Callback success after successfully fetching', data)
   }
 
   const onError = (error) => {
     console.log('Callback error after successfully fetching', error)
+  }
+
+  const { mutate: addHero } = useAddingSuperHero();
+
+  const handleAddingHero = () => {
+    const hero = { name, alterEgo }
+    addHero(hero)
   }
 
   const { isLoading, data, error, isError, isFetching, refetch } = useSuperHeroData(onSuccess, onError)
@@ -20,6 +30,11 @@ const RQRequest = () => {
   return (
     <div>
       <h2>React Query Request</h2>
+      <div>
+        <input type="text" value={name} onChange={e => setName(e.target.value)} />
+        <input type="text" value={alterEgo} onChange={e => setAlterEgo(e.target.value)} />
+        <button onClick={handleAddingHero}>Add Hero</button>
+      </div>
       <button onClick={refetch}>Fetch heroes</button>
       {
         data?.data.map((hero) => {
