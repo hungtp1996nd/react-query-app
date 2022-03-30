@@ -26,9 +26,20 @@ export const useSuperHeroData = (onSuccess, onError) => {
 export const useAddingSuperHero = () => {
   const queryClient = useQueryClient();
   return useMutation(handleAddSuperHero, {
-    onSuccess: async () => {
-      // using invalidate queries to handle adding pattern --> auto fetch get list when the posting is successfully
+    // using invalidate queries to handle adding pattern --> auto fetch get list when the posting is successfully
+    /*onSuccess: async () => {
        await queryClient.invalidateQueries('super-heroes')
+    }*/
+
+    // using response of mutation to handle adding logic by clone old query and append new data
+    onSuccess: (newData) => {
+      queryClient.setQueryData('super-heroes', (oldQuery) => {
+        return {
+          ...oldQuery,
+          data: [...oldQuery.data, newData.data],
+        }
+      })
     }
+
   })
 }
