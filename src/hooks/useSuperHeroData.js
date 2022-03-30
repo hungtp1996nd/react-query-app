@@ -1,4 +1,4 @@
-import {useMutation, useQuery} from "react-query";
+import { useMutation, useQuery, useQueryClient } from "react-query";
 import axios from "axios";
 
 const fetchSuperHeroes = () => {
@@ -14,7 +14,6 @@ export const useSuperHeroData = (onSuccess, onError) => {
     'super-heroes',
     fetchSuperHeroes,
     {
-      enabled: false,
       onSuccess,
       onError,
       /*select: (data) => {
@@ -25,5 +24,11 @@ export const useSuperHeroData = (onSuccess, onError) => {
 }
 
 export const useAddingSuperHero = () => {
-  return useMutation(handleAddSuperHero)
+  const queryClient = useQueryClient();
+  return useMutation(handleAddSuperHero, {
+    onSuccess: async () => {
+      // using invalidate queries to handle adding pattern --> auto fetch get list when the posting is successfully
+       await queryClient.invalidateQueries('super-heroes')
+    }
+  })
 }

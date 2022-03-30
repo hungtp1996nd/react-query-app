@@ -39,7 +39,11 @@
   "channels": [
     {
       "id": "react-hungtp",
-      "courses": ["react", "vue", "angular"]
+      "courses": [
+        "react",
+        "vue",
+        "angular"
+      ]
     }
   ]
 }
